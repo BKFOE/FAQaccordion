@@ -1,14 +1,31 @@
 $(document).ready(function() {
-    $(".accordion-button").click(function() {
+
+    function toggleAccoridon(button) {
 
         // Toggle the collapsed class 
-        $(this).toggleClass("collapsed");
+        $(button).toggleClass("collapsed"); 
 
-        // Show or hide the paragraph based on the presence of the collapsed class 
-        if($(this).hasClass("collapsed")) {
-            $(this).closest(".accordion-item").find(".accordion-body").show(1000);
+        // Show or hide the paragraph based on the presence of the collapsed class
+        if ($(button).hasClass("collpased")) {
+            $(button).closest(".accordion-item").find(".accordion-body").show();
         } else {
-            $(this).closest(".accordion-item").find(".accordion-body").hide(1000);
+            $(button).closest(".accordion-item").find(".accordion-body").hide();
         }
+    }
+
+    $(button).click(function() {
+
+        // Toggle the collapsed class 
+        toggleAccoridon(this);
+    });
+
+    $(".accordion-button").keydown(function(event) {
+        // Check if enter or space is pressed 
+        if(event.key === "Enter" || event.key === " ") {
+            toggleAccoridon(this);
+            event.preventDefault();
+        };
     });
 });
+
+       
